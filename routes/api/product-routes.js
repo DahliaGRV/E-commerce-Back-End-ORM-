@@ -8,14 +8,17 @@ router.get('/',async (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
   const productData = await Product.findAll({
-    include:[{model: Category},{model:Tag}]
+    include:[
+      {model: Category},
+      {model:Tag,
+    through:[ProductTag]}]
 
   }).then(dbProducts=>{
     res.json(dbProducts);
   })
   .catch(err =>{
     console.log(err);
-    res.status(500),json({msg:"anerrror occured",err});
+    res.status(500).json({msg:"an errror occured",err});
   });
 });
 
@@ -27,9 +30,15 @@ router.get('/:id', (req, res) => {
   Product.findByPk(req.params.id,{
     include:[{
       model:Tag,
-      include:[ProductTag]
+      through:[ProductTag]
     }]
+  }).then(dbProducts =>{
+    res.json(dbProducts)
   })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"an error occured".err});
+  });
 });
 
 // create new product
@@ -108,6 +117,18 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Product.destroy({
+    where:{
+      id: req.params.id
+    }
+  }).then(delProduct => {
+    res.json(delProduct);
+  })
+  .catch(err => {
+    console.log(err);
+    res.satatus(500).json({msg:"an error occured",err});
+  });
 });
+
 
 module.exports = router;
