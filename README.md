@@ -17,6 +17,10 @@ Week 7 unit 13
 A database for dynamically storing product information into different categories and their associated tags.
 
 ## Screenshots
+![image](https://user-images.githubusercontent.com/98775943/166871783-97c0ceb3-15ff-4afc-9791-d94ffbc59acd.png)
+![image](https://user-images.githubusercontent.com/98775943/166871953-50dde53b-012d-4ebc-a72d-75c48d05fab9.png)
+
+
 
 ## Installation
 In order to get this database to worka user must install the following packages: sequelize, express,and  mysql2. They must also ensure that under "scripts" in the package.json file there is one called "seed":node seeds/index.js in order to add the seeds. Also the .env folder will need to be updated with the users sql username and password in order for it to connect properly. Then, the first thing the user will need to do is open up mysql by loggin in and then running the schema.sql file inside of the db folder. Then they will exit sql and do the "npm run seed" which will add all of the seeds by adding them into dynamically produced tables into the open database. After this, the testing and adding of new information can take place in Insomnia, as shown in the demo video. 
